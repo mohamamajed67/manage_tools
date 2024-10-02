@@ -1,13 +1,13 @@
 
 const links = [
-    { title: 'Bookmarklet', url: '#', icon: 'fas fa-bookmark' },
-    { title: 'Gửi Mail SMTP', url: '#', icon: 'fas fa-mail-bulk' },
-    { title: 'Kiểm tra Mail', url: 'https://mail.google.com', icon: 'fas fa-envelope-open-text' },
-    { title: 'Check DNS', url: '#', icon: 'fas fa-network-wired' },
+    { title: 'Bookmarklet', url: 'https://ticket.di9x.net', icon: 'fas fa-bookmark' },
+    { title: 'Gửi Mail SMTP', url: 'https://smtp.di9x.com', icon: 'fas fa-mail-bulk' },
+    { title: 'Kiểm tra Mail', url: 'https://testmail.di9x.net', icon: 'fas fa-envelope-open-text' },
+    { title: 'Check DNS', url: 'https://dns.di9x.net/', icon: 'fas fa-network-wired' },
     { title: 'Microsoft Powershell', url: '#', icon: 'fab fa-microsoft' },
-    { title: 'Wiki Mắt Bão', url: '#', icon: 'fab fa-wikipedia-w' },
-    { title: 'Check TenantID', url: '#', icon: 'fab fa-windows' },
-    { title: 'Cài mail Outlook', url: '#', icon: 'fas fa-envelope' }
+    { title: 'Wiki Mắt Bão', url: 'https://wk.di9x.net', icon: 'fab fa-wikipedia-w' },
+    { title: 'Check TenantID', url: 'https://msid.di9x.net', icon: 'fab fa-windows' },
+    { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' }
 ];
 
 const linksGrid = document.getElementById('links-grid');
