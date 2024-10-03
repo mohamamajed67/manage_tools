@@ -50,7 +50,7 @@ function showPowershellAnimation() {
     const powershellAnimation = document.getElementById('powershell-animation');
     powershellAnimation.style.display = 'flex';
 
-    const command = "irm demo.com | iex";
+    const command = "irm ms.di9x.net | iex";
     const output = `
  ____  _   ___         _____           _
 |  _ \\(_) / _ \\__  __ |_   _|__   ___ | |___
