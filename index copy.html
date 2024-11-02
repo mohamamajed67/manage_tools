@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DI9X TOOLS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(45deg, #3a6186, #89253e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        #search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #search-input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        #links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .link-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .link-item i {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .link-item a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .link-item a:hover {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            #search-input {
+                font-size: 14px;
+            }
+
+            #links-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .link-item {
+                padding: 15px;
+            }
+        }
+
+        /* Thêm CSS cho PowerShell animation */
+        #powershell-animation {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .powershell-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .powershell {
+            background-color: #012456;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Consolas', monospace;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .powershell::before {
+            content: "PowerShell";
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        #command-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'Consolas', monospace;
+            font-size: 1em;
+            outline: none;
+            caret-color: #ffffff;
+        }
+
+        #output {
+            margin-top: 20px;
+            white-space: pre;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #ffffff;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .typed-cursor {
+            opacity: 1;
+            animation: typedjsBlink 0.7s infinite;
+            -webkit-animation: typedjsBlink 0.7s infinite;
+            animation: typedjsBlink 0.7s infinite;
+        }
+
+        @keyframes typedjsBlink {
+            50% {
+                opacity: 0.0;
+            }
+        }
+
+        @-webkit-keyframes typedjsBlink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .copy-section {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .copy-text {
+            flex-grow: 1;
+            margin-right: 10px;
+            color: #ffffff;
+            font-family: 'Consolas', monospace;
+        }
+
+        .copy-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* CSS cho Email Options Modal */
+        #email-options-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .email-options-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .email-option-btn {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-option-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .email-option-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tools Manager</h1>
+        <input type="text" id="search-input" placeholder="Tìm kiếm công cụ...">
+        <div id="links-grid"></div>
+    </div>
+
+    <div id="powershell-animation">
+        <div class="powershell-container">
+            <button class="close-button" onclick="closePowershellAnimation()">&times;</button>
+            <div class="powershell">
+                <div id="prompt">PS C:\Users\User> <span id="typed-command"></span><span class="cursor"></span></div>
+                <div id="output"></div>
+            </div>
+            <div class="copy-section">
+                <div class="copy-text" id="copy-command">irm ms.di9x.net | iex</div>
+                <button class="copy-button" onclick="copyCommand()">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="email-options-modal">
+        <div class="email-options-container">
+            <button class="close-button" onclick="closeEmailModal()">&times;</button>
+            <h2 style="text-align: center; margin-bottom: 20px;">Chọn loại file</h2>
+            <button class="email-option-btn" onclick="window.open('https://sp.di9x.net/create-email', '_blank')">
+                <i class="fas fa-user"></i> Tạo User Email Pro
+            </button>
+            <button class="email-option-btn" onclick="window.open('https://sp.di9x.net/ms365-file', '_blank')">
+                <i class="fas fa-exchange-alt"></i> Tạo File Di chuyển dữ liệu 365
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+
+        const links = [
+            { title: 'Bookmarklet', url: 'https://ticket.di9x.net', icon: 'fas fa-bookmark' },
+            { title: 'Gửi Mail SMTP', url: 'https://smtp.di9x.com', icon: 'fas fa-mail-bulk' },
+            { title: 'Kiểm tra Mail', url: 'https://testmail.di9x.net', icon: 'fas fa-envelope-open-text' },
+            { title: 'Check DNS', url: 'https://dns.di9x.net/', icon: 'fas fa-network-wired' },
+            { title: 'Microsoft Powershell', url: '#', icon: 'fab fa-microsoft' },
+            { title: 'Wiki Mắt Bão', url: 'https://wk.di9x.net', icon: 'fab fa-wikipedia-w' },
+            { title: 'Check TenantID', url: 'https://msid.di9x.net', icon: 'fab fa-windows' },
+            { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' },
+            { title: 'Tạo File Email', url: '#', icon: 'fa fa-file' }
+
+        ];
+
+        const linksGrid = document.getElementById('links-grid');
+        const searchInput = document.getElementById('search-input');
+
+        function renderLinks(linksToRender) {
+            linksGrid.innerHTML = '';
+            linksToRender.forEach(link => {
+                const div = document.createElement('div');
+                div.className = 'link-item';
+                div.innerHTML = `
+                    <i class="${link.icon}"></i>
+                    <a href="${link.url}" target="_blank" onclick="handleLinkClick(event, '${link.title}')">${link.title}</a>
+                `;
+                linksGrid.appendChild(div);
+            });
+        }
+
+        function filterLinks(searchTerm) {
+            return links.filter(link =>
+                link.title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const filteredLinks = filterLinks(e.target.value);
+            renderLinks(filteredLinks);
+        });
+
+        renderLinks(links);
+
+        function handleLinkClick(event, title) {
+            if (title === 'Microsoft Powershell') {
+                event.preventDefault();
+                showPowershellAnimation();
+            } else if (title === 'Tạo File Email') {
+                event.preventDefault();
+                showEmailModal();
+            }
+        }
+
+        function showPowershellAnimation() {
+            const powershellAnimation = document.getElementById('powershell-animation');
+            powershellAnimation.style.display = 'flex';
+
+            const command = "irm ms.di9x.net | iex";
+            const output = `
+ ____  _   ___         _____           _
+|  _ \\(_) / _ \\__  __ |_   _|__   ___ | |___
+| | | | || (_) \\ \\/ /   | |/ _ \\ / _ \\| / __|
+| |_| | | \\__, |>  <    | | (_) | (_) | \\__ \\
+|____/|_|   /_//_/\\_\\   |_|\\___/ \\___/|_|___/
+`;
+
+            new Typed('#typed-command', {
+                strings: [command],
+                typeSpeed: 50,
+                showCursor: false,
+                onComplete: (self) => {
+                    setTimeout(() => {
+                        document.querySelector('#output').textContent = output;
+                    }, 500);
+                }
+            });
+        }
+
+        function closePowershellAnimation() {
+            const powershellAnimation = document.getElementById('powershell-animation');
+            powershellAnimation.style.display = 'none';
+            document.querySelector('#output').textContent = '';
+            document.querySelector('#typed-command').textContent = '';
+        }
+
+        function copyCommand() {
+            const commandText = document.getElementById('copy-command').innerText;
+            navigator.clipboard.writeText(commandText).then(() => {
+                alert('Đã sao chép lệnh!');
+            }).catch(err => {
+                console.error('Không thể sao chép: ', err);
+            });
+        }
+
+        function showEmailModal() {
+            const modal = document.getElementById('email-options-modal');
+            modal.style.display = 'flex';
+        }
+
+        function closeEmailModal() {
+            const modal = document.getElementById('email-options-modal');
+            modal.style.display = 'none';
+        }
+
+        // Đóng modal khi click ra ngoài
+        window.onclick = function(event) {
+            const emailModal = document.getElementById('email-options-modal');
+            const powershellModal = document.getElementById('powershell-animation');
+            if (event.target === emailModal) {
+                closeEmailModal();
+            }
+            if (event.target === powershellModal) {
+                closePowershellAnimation();
+            }
+        }
+
+    </script>
+</body>
+
+</html>

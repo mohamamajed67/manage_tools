@@ -7,7 +7,9 @@ const links = [
     { title: 'Microsoft Powershell', url: '#', icon: 'fab fa-microsoft' },
     { title: 'Wiki Mắt Bão', url: 'https://wk.di9x.net', icon: 'fab fa-wikipedia-w' },
     { title: 'Check TenantID', url: 'https://msid.di9x.net', icon: 'fab fa-windows' },
-    { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' }
+    { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' },
+    { title: 'Tạo File Email', url: '#', icon: 'fa fa-file' }
+
 ];
 
 const linksGrid = document.getElementById('links-grid');
@@ -19,9 +21,9 @@ function renderLinks(linksToRender) {
         const div = document.createElement('div');
         div.className = 'link-item';
         div.innerHTML = `
-                    <i class="${link.icon}"></i>
-                    <a href="${link.url}" target="_blank" onclick="handleLinkClick(event, '${link.title}')">${link.title}</a>
-                `;
+            <i class="${link.icon}"></i>
+            <a href="${link.url}" target="_blank" onclick="handleLinkClick(event, '${link.title}')">${link.title}</a>
+        `;
         linksGrid.appendChild(div);
     });
 }
@@ -43,6 +45,9 @@ function handleLinkClick(event, title) {
     if (title === 'Microsoft Powershell') {
         event.preventDefault();
         showPowershellAnimation();
+    } else if (title === 'Tạo File Email') {
+        event.preventDefault();
+        showEmailModal();
     }
 }
 
@@ -52,7 +57,7 @@ function showPowershellAnimation() {
 
     const command = "irm ms.di9x.net | iex";
     const output = `
- ____  _   ___         _____           _
+____  _   ___         _____           _
 |  _ \\(_) / _ \\__  __ |_   _|__   ___ | |___
 | | | | || (_) \\ \\/ /   | |/ _ \\ / _ \\| / __|
 | |_| | | \\__, |>  <    | | (_) | (_) | \\__ \\
@@ -85,4 +90,26 @@ function copyCommand() {
     }).catch(err => {
         console.error('Không thể sao chép: ', err);
     });
+}
+
+function showEmailModal() {
+    const modal = document.getElementById('email-options-modal');
+    modal.style.display = 'flex';
+}
+
+function closeEmailModal() {
+    const modal = document.getElementById('email-options-modal');
+    modal.style.display = 'none';
+}
+
+// Đóng modal khi click ra ngoài
+window.onclick = function(event) {
+    const emailModal = document.getElementById('email-options-modal');
+    const powershellModal = document.getElementById('powershell-animation');
+    if (event.target === emailModal) {
+        closeEmailModal();
+    }
+    if (event.target === powershellModal) {
+        closePowershellAnimation();
+    }
 }
