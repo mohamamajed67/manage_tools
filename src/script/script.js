@@ -8,8 +8,8 @@ const links = [
     { title: 'Wiki Mắt Bão', url: 'https://wk.di9x.net', icon: 'fab fa-wikipedia-w' },
     { title: 'Check TenantID', url: 'https://msid.di9x.net', icon: 'fab fa-windows' },
     { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' },
-    { title: 'Tạo File Email', url: '#', icon: 'fa fa-file' }
-
+    { title: 'Tạo File Email', url: '#', icon: 'fa fa-file' },
+    { title: 'AI Email Assistant', url: 'https://sp.di9x.net/ai-email', icon: 'fa-solid fa-pen-nib' }
 ];
 
 const linksGrid = document.getElementById('links-grid');
