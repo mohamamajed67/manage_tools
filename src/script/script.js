@@ -9,7 +9,8 @@ const links = [
     { title: 'Check TenantID', url: 'https://msid.di9x.net', icon: 'fab fa-windows' },
     { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' },
     { title: 'Tạo File Email', url: '#', icon: 'fa fa-file' },
-    { title: 'Trợ lý Email AI', url: 'https://sp.di9x.net/ai-email', icon: 'fa-solid fa-pen-nib' }
+    { title: 'Trợ lý Email AI', url: 'https://sp.di9x.net/ai-email', icon: 'fa-solid fa-pen-nib' },
+    { title: 'Search Image AI', url: 'https://search.matbao.support', icon: 'fas fa-image' }
 ];
 
 const linksGrid = document.getElementById('links-grid');
