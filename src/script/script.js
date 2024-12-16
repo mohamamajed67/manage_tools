@@ -1,6 +1,6 @@
 
 const links = [
-    { title: 'Bookmarklet', url: 'https://ticket.di9x.net', icon: 'fas fa-bookmark' },
+    { title: 'Bookmarklet', url: 'http://ticket.di9x.net/user/matbao/52f8085c-95e7-422e-b701-8a187d1ed613', icon: 'fas fa-bookmark' },
     { title: 'Gửi Mail SMTP', url: 'https://smtp.di9x.com', icon: 'fas fa-mail-bulk' },
     { title: 'Kiểm tra Mail', url: 'https://testmail.di9x.net', icon: 'fas fa-envelope-open-text' },
     { title: 'Check DNS', url: 'https://dns.di9x.net/', icon: 'fas fa-network-wired' },
