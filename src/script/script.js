@@ -5,9 +5,9 @@ const links = [
     { title: 'Kiểm tra Mail', url: 'https://testmail.di9x.net', icon: 'fas fa-envelope-open-text' },
     { title: 'Check DNS', url: 'https://dns.di9x.net/', icon: 'fas fa-network-wired' },
     { title: 'Microsoft Powershell', url: '#', icon: 'fab fa-microsoft' },
-    { title: 'Wiki Mắt Bão', url: 'https://wk.di9x.net', icon: 'fab fa-wikipedia-w' },
+    { title: 'Wiki Mắt Bão', url: 'https://plupbi.notion.site/491b653a79ce477390422581d7aace17?v=0616b98bafd44b4f9470837250873032', icon: 'fab fa-wikipedia-w' },
     { title: 'Check TenantID', url: 'https://msid.di9x.net', icon: 'fab fa-windows' },
-    { title: 'Cài mail Outlook', url: 'https://help.di9x.com/', icon: 'fas fa-envelope' },
+    { title: 'Cài mail Outlook', url: 'https://help.matbao.support/', icon: 'fas fa-envelope' },
     { title: 'Tạo File Email', url: '#', icon: 'fa fa-file' },
     { title: 'Trợ lý Email AI', url: 'https://sp.di9x.net/ai-email', icon: 'fa-solid fa-pen-nib' },
     { title: 'Search Image AI', url: 'https://search.matbao.support', icon: 'fas fa-image' }
